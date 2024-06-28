@@ -45,7 +45,7 @@ Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@u
 Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product');
 
 //Send Mail 
-Route::get('/send-mail','HomeController@send_mail');
+//Route::get('/send-mail','HomeController@send_mail');
 
 //Login facebook
 Route::get('/login-facebook','AdminController@login_facebook');
@@ -77,6 +77,8 @@ Route::get('/edit-category-post/{category_post_id}','CategoryPost@edit_category_
 Route::post('/save-category-post','CategoryPost@save_category_post');
 Route::post('/update-category-post/{cate_id}','CategoryPost@update_category_post');
 Route::get('/delete-category-post/{cate_id}','CategoryPost@delete_category_post');
+
+
 
 //Product
  Route::group(['middleware' => 'auth.roles'], function () {
@@ -186,3 +188,8 @@ Route::post('/insert-rating','ProductController@insert_rating');
 Route::post('/arrange-category','CategoryProduct@arrange_category');
 //thong ke 
 Route::post('/filter-by-date','AdminController@filter_by_date');
+//mail 
+Route::get('/send-mail',function(){
+	Mail::to('thiin0607@gmail.com')->send(new \App\Mail\HelloMail());
+});
+//

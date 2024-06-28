@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 465),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,8 +64,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hieuchance2018@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Hieu Tan Tutorial'),
+        'address' => env('MAIL_FROM_ADDRESS', 'thiin0607@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Nhut thi'),
     ],
 
     /*
@@ -79,7 +79,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

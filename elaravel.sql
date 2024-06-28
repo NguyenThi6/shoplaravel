@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 27, 2024 lúc 03:12 PM
+-- Thời gian đã tạo: Th6 28, 2024 lúc 03:39 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -177,7 +177,7 @@ CREATE TABLE `tbl_category_post` (
 
 INSERT INTO `tbl_category_post` (`cate_post_id`, `cate_post_name`, `cate_post_status`, `cate_post_slug`, `cate_post_desc`) VALUES
 (4, 'tin tức sản phẩm', 0, 'tin-tuc-san-pham', 'cate_post_name'),
-(5, 'tin showbiz', 0, 'tin-showbiz', 'tin showbiz');
+(6, 'Tin Bong da', 0, 'tin-bong-da', 'Tin Bong da');
 
 -- --------------------------------------------------------
 
@@ -285,11 +285,7 @@ CREATE TABLE `tbl_customers` (
 --
 
 INSERT INTO `tbl_customers` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `created_at`, `updated_at`) VALUES
-(15, 'nhut thi', 'Nhutthiadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123', NULL, NULL),
-(16, 'nhut thi', 'Nhutthiadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123', NULL, NULL),
-(17, 'nhut thi', 'Nhutthiadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123', NULL, NULL),
-(18, 'nhut thi', 'admin1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '12344', NULL, NULL),
-(19, 'nhut thi', 'admin12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '12344', NULL, NULL);
+(25, 'nhut thi', 'Nhutthiadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -337,6 +333,26 @@ INSERT INTO `tbl_gallery` (`gallery_id`, `gallery_name`, `gallery_image`, `produ
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_icons`
+--
+
+CREATE TABLE `tbl_icons` (
+  `id_icons` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `link` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_icons`
+--
+
+INSERT INTO `tbl_icons` (`id_icons`, `name`, `image`, `link`) VALUES
+(1, 'facebook', '', 'facebook.com');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_info`
 --
 
@@ -376,13 +392,8 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `created_at`, `updated_at`) VALUES
-(26, 30, 36, 2, '9i705', '2024-07-08 10:45:00', NULL),
-(27, 31, 37, 1, '1j706', '2024-07-09 02:00:00', NULL),
-(28, 32, 38, 2, '2k707', '2024-07-10 03:15:00', NULL),
-(29, 33, 39, 1, '3l708', '2024-07-11 04:30:00', NULL),
-(30, 34, 40, 1, '4m709', '2024-07-12 05:45:00', NULL),
-(31, 35, 41, 2, '5n710', '2024-07-13 07:00:00', NULL),
-(33, 37, 43, 1, '7p712', '2024-07-15 09:30:00', NULL);
+(38, 25, 29, 1, '658b0', '2024-06-28 05:49:52', NULL),
+(39, 25, 30, 1, '54a4b', '2024-06-28 06:52:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -408,12 +419,8 @@ CREATE TABLE `tbl_order_details` (
 --
 
 INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `product_coupon`, `product_feeship`, `created_at`, `updated_at`) VALUES
-(56, '233fb', 29, 'pham san 4', '500000', 1, 'no', '10000', NULL, NULL),
-(57, '48353', 29, 'pham san 4', '500000', 1, 'ABCD', '25000', NULL, NULL),
-(58, '9140a', 29, 'pham san 4', '500000', 1, 'no', '10000', NULL, NULL),
-(59, '23af0', 25, 'Quần Âu Nam Ống Ôm Xếp Ly Phối Lưng Thun Trơn Form Slim - 10F23PFO011', '378000', 1, 'no', '25000', NULL, NULL),
-(60, '7f694', 29, 'pham san 4', '500000', 1, 'no', '25000', NULL, NULL),
-(61, 'd226a', 30, 'abc', '400000', 1, 'no', '10000', NULL, NULL);
+(64, '658b0', 29, 'pham san 4', '500000', 1, 'no', '10000', NULL, NULL),
+(65, '54a4b', 29, 'pham san 4', '500000', 2, 'ABCD', '25000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1202,7 +1209,8 @@ INSERT INTO `tbl_rating` (`rating_id`, `product_id`, `rating`) VALUES
 (9, 29, 2),
 (10, 29, 4),
 (11, 29, 2),
-(12, 30, 3);
+(12, 30, 3),
+(13, 27, 5);
 
 -- --------------------------------------------------------
 
@@ -1253,7 +1261,11 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, 
 (23, 'nhut thi123123123', '12312312312', '1231231231', 'thiem@email.com', '23123123123', 0, NULL, NULL),
 (24, 'nhut thi', '123hcm', '0123456789', 'thiem@email.com', 'dfgdfg', 0, NULL, NULL),
 (25, 'nguyen phuoc', 'hoc mon', '0123456789', 'huuphuoc123@email.com', '123132', 0, NULL, NULL),
-(26, 'nhut thi', '123hcm', '444', 'thiem@email.com', '123dfsd', 0, NULL, NULL);
+(26, 'nhut thi', '123hcm', '444', 'thiem@email.com', '123dfsd', 0, NULL, NULL),
+(27, 'nhut thi', '123hcm', '0123456789', 'thiem@email.com', 'dfsdg', 0, NULL, NULL),
+(28, 'nguyen phuoc', 'hoc mon', '0123456789', 'huuphuoc123@email.com', 's1231312', 0, NULL, NULL),
+(29, 'nhut thi', '123hcm', '0123456789', 'thiem@email.com', '123', 0, NULL, NULL),
+(30, 'nguyen phuoc', 'hoc mon', '0123456789', 'huuphuoc123@email.com', '123123', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -12725,6 +12737,12 @@ ALTER TABLE `tbl_gallery`
   ADD PRIMARY KEY (`gallery_id`);
 
 --
+-- Chỉ mục cho bảng `tbl_icons`
+--
+ALTER TABLE `tbl_icons`
+  ADD PRIMARY KEY (`id_icons`);
+
+--
 -- Chỉ mục cho bảng `tbl_info`
 --
 ALTER TABLE `tbl_info`
@@ -12840,7 +12858,7 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT cho bảng `tbl_category_post`
 --
 ALTER TABLE `tbl_category_post`
-  MODIFY `cate_post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cate_post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category_product`
@@ -12864,7 +12882,7 @@ ALTER TABLE `tbl_coupon`
 -- AUTO_INCREMENT cho bảng `tbl_customers`
 --
 ALTER TABLE `tbl_customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_feeship`
@@ -12879,6 +12897,12 @@ ALTER TABLE `tbl_gallery`
   MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT cho bảng `tbl_icons`
+--
+ALTER TABLE `tbl_icons`
+  MODIFY `id_icons` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_info`
 --
 ALTER TABLE `tbl_info`
@@ -12888,13 +12912,13 @@ ALTER TABLE `tbl_info`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
@@ -12906,7 +12930,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT cho bảng `tbl_rating`
 --
 ALTER TABLE `tbl_rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_roles`
@@ -12918,7 +12942,7 @@ ALTER TABLE `tbl_roles`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_slider`

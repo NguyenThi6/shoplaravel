@@ -253,7 +253,7 @@ return $output;
             $order_status=$ord->order_status;
             
         }
-        $customer=Customer::where('customer_id',$customer_id)->first();
+        $customers=Customer::where('customer_id',$customer_id)->first();
         $shipping=Shipping::where('shipping_id',$shipping_id)->first();
 
 
@@ -272,7 +272,7 @@ return $output;
             }
 		
         return view('admin.view_order')
-        ->with(compact('order_details','customer'
+        ->with(compact('order_details','customers'
         ,'shipping','coupon_number','coupon_condition','order','order_status'));
             
 

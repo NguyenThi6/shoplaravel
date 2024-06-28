@@ -19,7 +19,7 @@ class HomeController extends Controller
     }
     public function send_mail(){
          //send mail
-                $to_name = "Nhut Thi";
+                $to_name = "Nhut thi";
                 $to_email = "thiin0607@gmail.com";//send to this email
                
              

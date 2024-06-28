@@ -25,9 +25,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{$customer->customer_name}}</td>
-            <td>{{$customer->customer_phone}}</td>
-            <td>{{$customer->customer_email}}</td>
+            <td>{{$customers->customer_name}}</td>
+            <td>{{$customers->customer_phone}}</td>
+            <td>{{$customers->customer_email}}</td>
           </tr>
         </tbody>
       </table>
@@ -132,7 +132,7 @@
                       Không mã
                   @endif
               </td>
-              <td>{{number_format($details->product_feeship, 0, ',', '.')}}đ</td>
+              <td>{{number_format($details->product_feeship, 0, ',', '.')}}VND</td>
               <td>
                 <input type="number" min="1" {{$order_status == 2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
                 <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
@@ -142,67 +142,32 @@
                   <button class="btn btn-default update_quantity_order" data-product_id="{{$details->product_id}}" name="update_quantity_order">Cập nhật</button>
                 @endif
               </td>
-              <td>{{number_format($details->product_price, 0, ',', '.')}}đ</td>
-              <td>{{number_format($subtotal, 0, ',', '.')}}đ</td>
+              <td>{{number_format($details->product_price, 0, ',', '.')}}VND</td>
+              <td>{{number_format($subtotal, 0, ',', '.')}}VND</td>
             </tr>
           @endforeach
           <tr>
-            <td colspan="2">  
-              @php 
-                $total_coupon = 0;
+          <td colspan="2">
+                      @php
+                      $total_coupon = 0;
+                      @endphp
+                      @if($coupon_condition == 1)
+              @php
+              $total_after_coupon = ($total * $coupon_number) / 100;
+              echo 'Tổng giảm: ' . number_format($total_after_coupon, 0, ',', '.') . ' VND<br>';
+              $total_coupon = $total - $total_after_coupon - $details->product_feeship;
               @endphp
-              @if($coupon_condition == 1)
-                  @php
-                    $total_after_coupon = ($total * $coupon_number) / 100;
-                    echo 'Tổng giảm :' . number_format($total_after_coupon, 0, ',', '.') . '</br>';
-                    $total_coupon = $total + $details->product_feeship - $total_after_coupon;
-                  @endphp
-              @else 
-                  @php
-                    echo 'Tổng giảm :' . number_format($coupon_number, 0, ',', '.') . 'k' . '</br>';
-                    $total_coupon = $total + $details->product_feeship - $coupon_number;
-                  @endphp
-              @endif
-              Phí ship : {{number_format($details->product_feeship, 0, ',', '.')}}đ</br> 
-              Thanh toán: {{number_format($total_coupon, 0, ',', '.')}}đ 
-            </td>
-          </tr>
-          <tr>
-            <td colspan="6">
-              @foreach($order as $key => $or)
-                @if($or->order_status == 1)
-                  <form>
-                    @csrf
-                    <select class="form-control order_details">
-                      <option value="">----Chọn hình thức đơn hàng-----</option>
-                      <option id="{{$or->order_id}}" selected value="1">Chưa xử lý</option>
-                      <option id="{{$or->order_id}}" value="2">Đã xử lý-Đã giao hàng</option>
-                      <option id="{{$or->order_id}}" value="3">Hủy đơn hàng-tạm giữ</option>
-                    </select>
-                  </form>
-                @elseif($or->order_status == 2)
-                  <form>
-                    @csrf
-                    <select class="form-control order_details">
-                      <option value="">----Chọn hình thức đơn hàng-----</option>
-                      <option id="{{$or->order_id}}" value="1">Chưa xử lý</option>
-                      <option id="{{$or->order_id}}" selected value="2">Đã xử lý-Đã giao hàng</option>
-                      <option id="{{$or->order_id}}" value="3">Hủy đơn hàng-tạm giữ</option>
-                    </select>
-                  </form>
-                @else
-                  <form>
-                    @csrf
-                    <select class="form-control order_details">
-                      <option value="">----Chọn hình thức đơn hàng-----</option>
-                      <option id="{{$or->order_id}}" value="1">Chưa xử lý</option>
-                      <option id="{{$or->order_id}}"  value="2">Đã xử lý-Đã giao hàng</option>
-                      <option id="{{$or->order_id}}" selected value="3">Hủy đơn hàng-tạm giữ</option>
-                    </select>
-                  </form>
-                @endif
-              @endforeach
-            </td>
+          @else
+              @php
+              echo 'Tổng giảm: ' . number_format($coupon_number, 0, ',', '.') . ' VND<br>';
+              $total_coupon = $total - $coupon_number - $details->product_feeship;
+              @endphp
+          @endif
+          Phí Ship: {{ number_format($details->product_feeship, 0, ',', '.') }} VND <br>
+          Thanh toán: {{ number_format($total_coupon, 0, ',', '.') }} VND
+
+                  </td>
+
           </tr>
         </tbody>
       </table>
