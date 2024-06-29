@@ -11,7 +11,7 @@
             <div class="productinfo text-center">
                 <form>
                    @csrf
-                    <input type="button" value="Tin thức"  name="add-to-cart">
+                    <input type="button" value="Tin thức" name="add-to-cart">
                     <p>{{$category_post->$category_post_name}}</p>
                 </form>
             </div>

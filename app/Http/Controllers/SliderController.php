@@ -26,14 +26,14 @@ class SliderController extends Controller
     	return view('admin.slider.add_slider');
     }
     public function unactive_slide($slide_id){
-        $this->AuthLogin();
+       // $this->AuthLogin();
         DB::table('tbl_slider')->where('slider_id',$slide_id)->update(['slider_status'=>0]);
         Session::put('message','Không kích hoạt slider thành công');
         return Redirect::to('manage-slider');
 
     }
     public function active_slide($slide_id){
-        $this->AuthLogin();
+       // $this->AuthLogin();
         DB::table('tbl_slider')->where('slider_id',$slide_id)->update(['slider_status'=>1]);
         Session::put('message','Kích hoạt slider thành công');
         return Redirect::to('manage-slider');
@@ -42,7 +42,7 @@ class SliderController extends Controller
 
     public function insert_slider(Request $request){
     	
-    	$this->AuthLogin();
+    	//$this->AuthLogin();
 
    		$data = $request->all();
        	$get_image = request('slider_image');

@@ -178,6 +178,10 @@ class AdminController extends Controller
        
 
     }
+    public function login_customer_google(){
+        config(['services.google.redirect'=>env('GOOGLE_CLIENT_URL')]);
+        return Social::driver('google')->redirect();
+    }
     public function logout(){
         $this->AuthLogin();
         Session::put('admin_name',null);

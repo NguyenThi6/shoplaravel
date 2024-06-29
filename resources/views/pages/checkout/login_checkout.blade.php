@@ -5,6 +5,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
+				@if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {!! session()->get('message') !!}
+                    </div>
+                @elseif(session()->has('error'))
+                     <div class="alert alert-danger">
+                        {!! session()->get('error') !!}
+                        @endif
 					<div class="login-form"><!--login form-->
 						<h2>Đăng nhập tài khoản</h2>
 						<form action="{{URL::to('/login-customer')}}" method="POST">
@@ -15,10 +23,22 @@
 								<input type="checkbox" class="checkbox"> 
 								Ghi nhớ đăng nhập
 							</span>
+							<span>
+								
+								<a href="{{url('/quen-mat-khau')}}">Quên mật khẩu</a>
+							</span>
 							<button type="submit" class="btn btn-default">Đăng nhập</button>
 						</form>
+
+						<ul class="list-login">
+							<li><a href="{{url('login-customer-google')}}"><img alt="danng nhap bang tai khoan google"
+							src="{{asset('public/frontend/images/google.png')}}"></a></li>
+							
+						</ul>
 					</div><!--/login form-->
+				
 				</div>
+				
 				<div class="col-sm-1">
 					<h2 class="or">Hoặc</h2>
 				</div>

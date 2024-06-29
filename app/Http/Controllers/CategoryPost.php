@@ -96,7 +96,7 @@ class CategoryPost extends Controller
         // ->orderby('tbl_product.product_id','desc')->get();
         
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->paginate(6); 
-
+       
     	return view('pages.tintuc.show_tintuc')->with('category',$cate_product)
         ->with('brand',$brand_product)->with('all_product',$all_product)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)

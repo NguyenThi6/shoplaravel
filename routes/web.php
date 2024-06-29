@@ -192,4 +192,10 @@ Route::post('/filter-by-date','AdminController@filter_by_date');
 Route::get('/send-mail',function(){
 	Mail::to('thiin0607@gmail.com')->send(new \App\Mail\HelloMail());
 });
-//
+//quen mạt khau
+Route::get('/quen-mat-khau','MailController@quen_mat_khau');
+Route::post('/recover-pass','MailController@recover_pass');
+Route::get('/update-new-pass','MailController@update_new_pass');
+Route::post('/reset-new-pass','MailController@reset_new_pass');
+//dang nhap bang gg 
+Route::get('/login-customer-google','AdminController@login_customer_google');
